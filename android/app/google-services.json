@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "171256421160",
+    "project_id": "my-notes-16032001",
+    "storage_bucket": "my-notes-16032001.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171256421160:android:a75e1c8b7648485909ce1d",
+        "android_client_info": {
+          "package_name": "se.learningdart.mynotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "171256421160-vao4u90u25cbo7erh4fqnu84ullie1ld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrT_ctpwkZrXZ0foPdxKeV9nCsOV1Ey9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "171256421160-vao4u90u25cbo7erh4fqnu84ullie1ld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
