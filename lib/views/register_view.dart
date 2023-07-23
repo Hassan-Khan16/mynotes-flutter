@@ -39,6 +39,7 @@ class _RegisterViewState extends State<RegisterView> {
         children: [
           TextField(
             controller: _email,
+            keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(hintText: "Enter your email"),
           ),
           TextField(
@@ -46,7 +47,7 @@ class _RegisterViewState extends State<RegisterView> {
             obscureText: true,
             enableSuggestions: false,
             autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
+            textCapitalization: TextCapitalization.none,
             decoration: const InputDecoration(hintText: "Enter your password"),
           ),
           TextButton(
@@ -54,12 +55,12 @@ class _RegisterViewState extends State<RegisterView> {
               final email = _email.text;
               final password = _password.text;
               try {
-                await FirebaseAuth.instance
-                    .createUserWithEmailAndPassword(
-                        email: email, 
-                        password: password
-                        );
-                    Navigator.of(context).pushNamed(verifyEmailRoute);
+                await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    email: email, password: password);
+                final user = FirebaseAuth.instance.currentUser;
+                await user?.sendEmailVerification();
+                if (!mounted) return;
+                Navigator.of(context).pushNamed(verifyEmailRoute);
               } on FirebaseAuthException catch (e) {
                 if (e.code == "email-already-in-use") {
                   await showErrorDialog(
@@ -77,7 +78,10 @@ class _RegisterViewState extends State<RegisterView> {
                     "Email is invalid",
                   );
                 } else {
-                  await showErrorDialog(context, 'Error: ${e.code}');
+                  await showErrorDialog(
+                    context,
+                    'Error: ${e.code}',
+                  );
                 }
               } catch (e) {
                 await showErrorDialog(
